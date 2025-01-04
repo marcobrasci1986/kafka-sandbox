@@ -46,6 +46,7 @@ subprojects {
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
+    // apply this to ALL tests (unit + integration)
     tasks.withType(Test) {
         useJUnitPlatform()
 
