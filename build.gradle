@@ -2,6 +2,11 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
+
+    // configure integrationTests:
+    // https://tomgregory.com/gradle/gradle-integration-tests/#:~:text=Your%20Gradle%20project%20can%20easily,developers%20to%20work%20more%20productively.
+    // https://www.youtube.com/watch?v=_q5Rxgtn1vg&t=390s&ab_channel=TomGregoryTech
+    id 'org.unbroken-dome.test-sets' version '4.1.0'
 }
 
 bootJar {
@@ -12,6 +17,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.unbroken-dome.test-sets'
 
     repositories {
         mavenCentral()
@@ -26,6 +32,10 @@ subprojects {
     group = 'com.example'
     version = '0.0.1-SNAPSHOT'
 
+    testSets {
+        integrationTest
+    }
+
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.kafka:spring-kafka'
@@ -36,11 +46,16 @@ subprojects {
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
-    tasks.named('test', Test) {
+    tasks.withType(Test) {
         useJUnitPlatform()
 
         testLogging {
             events "passed", "skipped", "failed"
         }
+    }
+
+    // Runs both unit and integration tests
+    tasks.named('check') {
+        dependsOn tasks.named('integrationTest')
     }
 }
