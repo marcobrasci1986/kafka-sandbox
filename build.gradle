@@ -36,7 +36,11 @@ subprojects {
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
-    tasks.named('test') {
+    tasks.named('test', Test) {
         useJUnitPlatform()
+
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
     }
 }
