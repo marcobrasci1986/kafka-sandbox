@@ -1,0 +1,12 @@
+### GET request to example server
+GET http://localhost:8081/api/v1/kafka/publish?message=hello-world-2
+
+### POST request to example server
+POST http://localhost:8081/api/v1/kafka/sendMessage
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe"
+}
