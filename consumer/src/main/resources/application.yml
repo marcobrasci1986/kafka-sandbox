@@ -8,6 +8,17 @@ spring:
       group-id: myGroup
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties.spring.json.trusted.packages: be.avidoo.consumer.model
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+
+
+# For POJO's instead of String use this
+#spring:
+#  kafka:
+#    consumer:
+#      bootstrap-servers: 'localhost:9092'
+#      group-id: myGroup
+#      auto-offset-reset: earliest
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties.spring.json.trusted.packages: be.avidoo.consumer.model
