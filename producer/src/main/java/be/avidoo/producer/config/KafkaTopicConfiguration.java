@@ -10,6 +10,7 @@ public class KafkaTopicConfiguration {
 
     public static final String TOPIC_NAME = "myTopic";
     public static final String TOPIC_NAME_JSON = TOPIC_NAME + "Json";
+    public static final String TOPIC_NAME_WIKIMEDIA = "wikimedia_recentchange";
 
     @Bean
     public NewTopic topic() {
@@ -17,10 +18,15 @@ public class KafkaTopicConfiguration {
                 .build();
     }
 
-
     @Bean
     public NewTopic topicJson() {
         return TopicBuilder.name(TOPIC_NAME_JSON)
+                .build();
+    }
+
+    @Bean
+    public NewTopic topicWikimedia() {
+        return TopicBuilder.name(TOPIC_NAME_WIKIMEDIA)
                 .build();
     }
 }
